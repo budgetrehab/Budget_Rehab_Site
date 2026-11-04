@@ -71,33 +71,38 @@
 
   /* early access */
   .signup{width:min(92vw,460px);display:flex;flex-direction:column;align-items:center;margin-top:clamp(72px,12vw,110px);animation:rise 1s 2s cubic-bezier(.2,.8,.2,1) both}
-  .signup .lead{margin:0 0 14px;text-wrap:balance;white-space:nowrap;font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.88)}
-  .field{
-    display:flex;gap:6px;padding:6px;border-radius:999px;
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    box-shadow:0 10px 30px rgba(50,15,110,.18);transition:border-color .25s,background .25s;
+  .signup .lead{margin:0 0 18px;text-wrap:balance;white-space:nowrap;font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.88)}
+  .fields{display:flex;flex-direction:column}
+  .fields .row{display:grid;grid-template-columns:auto 1fr;align-items:end;column-gap:20px;row-gap:4px;text-align:left}
+  .f{display:contents;cursor:text}
+  .lbl{display:flex;align-items:center;gap:10px;white-space:nowrap;padding:0 0 11px;
+    font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.9)}
+  .emo{font-size:18px;line-height:1;width:1.3em;text-align:center}
+  @media (max-width:380px){.lbl{font-size:14px;gap:7px}.fields .row{column-gap:12px}}
+  .fields input{
+    width:100%;min-width:0;padding:14px 4px 10px;outline:0;color:#fff;
+    background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.45);border-radius:0;
+    font:17px "Questrial",sans-serif;letter-spacing:.03em;text-align:left;
+    transition:border-color .25s;
   }
-  .field:focus-within{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.2)}
-  .field input{
-    flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;
-    font:16px "Questrial",sans-serif;padding:0 14px;letter-spacing:.02em;
-  }
-  .field input::placeholder{color:rgba(255,255,255,.7)}
-  /* stop the browser's autofill highlight on the email box */
-  .field input:-webkit-autofill,.field input:-webkit-autofill:hover,.field input:-webkit-autofill:focus,.field input:-webkit-autofill:active,.field input:autofill{
+  .fields input:focus{border-bottom-color:#fff}
+  .fields input::placeholder{color:rgba(255,255,255,.7);transition:opacity .2s}
+  .fields input:focus::placeholder{opacity:.45}
+  .fields input.bad{border-bottom-color:#FFC2CE}
+  /* stop the browser's autofill highlight */
+  .fields input:-webkit-autofill,.fields input:-webkit-autofill:hover,.fields input:-webkit-autofill:focus,.fields input:-webkit-autofill:active,.fields input:autofill{
     -webkit-text-fill-color:#fff;caret-color:#fff;
     -webkit-box-shadow:0 0 0 1000px transparent inset;box-shadow:0 0 0 1000px transparent inset;
     background-color:transparent!important;background-clip:text;
     transition:background-color 99999s ease-in-out 0s,color 99999s ease-in-out 0s;
   }
-  .field button{
-    border:0;cursor:pointer;border-radius:999px;padding:13px 20px;white-space:nowrap;
-    background:#fff;color:#5A3DB0;font:600 14px "Questrial",sans-serif;letter-spacing:.08em;text-transform:uppercase;
-    transition:transform .2s,box-shadow .2s;
+  .fields button{
+    margin-top:26px;border:0;cursor:pointer;border-radius:999px;padding:16px 20px;white-space:nowrap;
+    background:#fff;color:#5A3DB0;font:600 14px "Questrial",sans-serif;letter-spacing:.1em;text-transform:uppercase;
+    box-shadow:0 10px 30px rgba(50,15,110,.2);transition:transform .2s,box-shadow .2s;
   }
-  .field button:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,255,255,.35)}
-  .field button:disabled{opacity:.7;cursor:default;transform:none}
+  .fields button:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,255,255,.35)}
+  .fields button:disabled{opacity:.7;cursor:default;transform:none}
   .note{min-height:22px;margin:12px 0 0;font-size:14px;color:rgba(255,255,255,.85)}
   .note.err{color:#FFE0E6}
   /* confirmation */
@@ -129,10 +134,10 @@
   @keyframes draw{to{stroke-dashoffset:0}}
   .done .kicker{display:block;font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:12px;padding-left:.38em}
   .done h2{
-    margin:0;font-weight:400;font-size:clamp(22px,4.6vw,30px);line-height:1.25;letter-spacing:.02em;text-wrap:balance;
+    margin:0;font-weight:400;font-size:clamp(21px,5.4vw,26px);line-height:1.25;letter-spacing:.02em;text-wrap:balance;
   }
   .done .rule{display:none;width:48px;height:1px;margin:18px auto;background:linear-gradient(90deg,transparent,#fff,transparent)}
-  .done p.sub{margin:12px 0 0;font-size:15px;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:balance}
+  .done p.sub{margin:10px 0 0;font-size:15px;letter-spacing:.03em;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:balance}
   .done .pv{display:block;margin-top:16px;font-size:12px;color:rgba(255,255,255,.6)}
   .burst{position:absolute;left:50%;top:clamp(60px,9vw,72px);width:0;height:0;pointer-events:none}
   .burst i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;opacity:0;
@@ -142,10 +147,6 @@
   .hp{position:absolute;left:-9999px}
   .signup form{width:100%}
   @media (max-width:360px){.signup .lead{font-size:13px}}
-  @media (max-width:420px){
-    .field{flex-direction:column;border-radius:24px;padding:8px}
-    .field input{padding:12px 14px;text-align:center}
-  }
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
@@ -169,8 +170,14 @@
       <p class="lead">Heal your relationship with money.</p>
       <form id="form" novalidate>
         <p class="hp"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
-        <div class="field">
-          <input type="email" name="email" id="email" placeholder="Your email address" autocomplete="email" required aria-label="Email address">
+        <div class="fields"><div class="row">
+            <label class="f"><span class="lbl"><span class="emo" aria-hidden="true">👤</span>Name</span>
+              <input type="text" name="name" id="name" autocomplete="name" required maxlength="100"></label>
+            <label class="f"><span class="lbl"><span class="emo" aria-hidden="true">✉️</span>Email Address</span>
+              <input type="email" name="email" id="email" autocomplete="email" required></label>
+            <label class="f"><span class="lbl"><span class="emo" aria-hidden="true">📱</span>Phone Number</span>
+              <input type="tel" name="phone" id="phone" autocomplete="tel" required maxlength="30"></label>
+          </div>
           <button type="button" id="btn">Get early access</button>
         </div>
         <p class="note" id="note" role="status"></p>
@@ -198,21 +205,27 @@
       box.innerHTML='<div class="done" role="status">'+
         '<div class="burst">'+dots+'</div>'+
         '<div class="badge"><svg viewBox="0 0 30 30"><path d="M8 15.5l5 5 9-11"/></svg></div>'+
-        '<h2>Your Budget Rehab journey begins soon</h2>'+
-        '<p class="sub">Keep an eye on your inbox.</p>'+
+        '<h2>Thank you for signing up</h2>'+
+        '<p class="sub">Your Budget Rehab journey begins soon</p>'+
         (extra||'')+'</div>';
     }
+
+    const nameEl=document.getElementById('name'),phoneEl=document.getElementById('phone');
+    function bad(el,text){el.classList.add('bad');msg(text,true);el.focus();}
+    [nameEl,email,phoneEl].forEach(el=>el.addEventListener('input',()=>{el.classList.remove('bad');msg('');}));
 
     async function submit(e){
       if(e)e.preventDefault();
       if(btn.disabled)return;
-      const v=email.value.trim();
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){msg('Please enter a valid email address.',true);email.focus();return;}
+      const n=nameEl.value.trim(),v=email.value.trim(),ph=phoneEl.value.trim();
+      if(!n)return bad(nameEl,'Please enter your name.');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))return bad(email,'Please enter a valid email address.');
+      if((ph.match(/\d/g)||[]).length<7||/[^\d\s()+\-.]/.test(ph))return bad(phoneEl,'Please enter a valid phone number.');
       if(form.querySelector('[name=website]').value)return;
-      if(preview){confirmed('<small class="pv">Preview only: no email sent.</small>');return;}
+      if(preview){confirmed('<small class="pv">Preview only: nothing sent.</small>');return;}
       btn.disabled=true;btn.textContent='Joining\u2026';msg('');
       try{
-        const res=await fetch(SIGNUP_URL,{method:'POST',body:new URLSearchParams({email:v,page:location.href})});
+        const res=await fetch(SIGNUP_URL,{method:'POST',body:new URLSearchParams({name:n,email:v,phone:ph})});
         const data=await res.json();
         if(!data.ok)throw new Error(data.error||'failed');
         confirmed();
@@ -222,7 +235,7 @@
       }
     }
     btn.addEventListener('click',submit);
-    email.addEventListener('keydown',e=>{if(e.key==='Enter')submit(e);});
+    [nameEl,email,phoneEl].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter')submit(e);}));
     form.addEventListener('submit',submit);
   })();
 
