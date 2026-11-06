@@ -7,20 +7,23 @@
 <title>Budget Rehab – Coming Soon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Questrial&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --b1:#B094EC;--b2:#8B68DA;--deep:#5A3DB0;--soft:#C9B4FF;--mint:#B8F5D2;--rose:#FFC2CE;
   }
   *{box-sizing:border-box}
-  html,body{height:100%}
+  html{background:var(--b2)}
   body{
-    margin:0;min-height:100vh;color:#fff;overflow-x:hidden;position:relative;
-    background:linear-gradient(160deg,var(--b1),var(--b2));
-    display:flex;align-items:center;justify-content:center;text-align:center;
+    margin:0;min-height:100vh;min-height:100svh;color:#fff;overflow-x:hidden;position:relative;
+    background:transparent;
+    display:flex;text-align:center;
     padding:env(safe-area-inset-top,0) 24px env(safe-area-inset-bottom,0);
     font-family:"Questrial","Century Gothic","Avenir Next",sans-serif;
   }
+
+  /* full-screen background that stays put while scrolling */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(160deg,var(--b1),var(--b2))}
 
   /* drifting aurora glows */
   .aurora{position:fixed;inset:-20%;pointer-events:none;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
@@ -38,7 +41,7 @@
   /* soft vignette for depth */
   .vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(40,15,90,.18) 100%)}
 
-  main{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;padding:clamp(80px,22vh,240px) 0 40px}
+  main{margin:auto;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;padding:clamp(60px,16vh,180px) 0 56px}
 
   /* logo: plain image, no filters or scaling, so Safari keeps it sharp */
   .logo{
@@ -50,35 +53,239 @@
 
   /* fine divider */
   .line{
-    width:min(40vw,220px);height:1px;margin:clamp(26px,4.5vw,40px) 0 clamp(20px,3.5vw,30px);
+    width:min(40vw,220px);height:1px;margin:clamp(26px,4.5vw,40px) 0 clamp(40px,7vh,72px);
     background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
     transform:scaleX(0);animation:grow 1.2s 1s cubic-bezier(.2,.8,.2,1) forwards;
   }
   @keyframes grow{to{transform:scaleX(1)}}
 
-  .soon{
-    margin:0;font-size:clamp(15px,3.2vw,24px);text-transform:uppercase;white-space:nowrap;
-    letter-spacing:.42em;padding-left:.42em;
-  }
-  /* typewriter */
-  .tw{display:inline-grid;text-align:left}
-  .tw>*{grid-area:1/1}
-  .tw .sizer{visibility:hidden}
-  .caret{display:inline-block;width:2px;height:1.05em;margin-left:.08em;vertical-align:-.12em;background:#fff;
-    border-radius:1px;animation:caret 1s steps(1) infinite;transition:opacity .4s}
-  .tw.finished .caret{animation:none;opacity:0}
+  .soon{margin:0;font-weight:400;text-transform:uppercase;max-width:min(92vw,900px)}
+  .tw-line{display:block;text-wrap:balance}
+  .tw-line.l1{font-size:clamp(13px,1.6vw,16px);line-height:1.9;letter-spacing:.3em;padding-left:.3em;color:#fff;max-width:900px;margin:0 auto}
+  .tw-line.l2{margin-top:12px;font-size:clamp(12px,1.7vw,15px);line-height:1.6;letter-spacing:.32em;padding-left:.32em;color:rgba(255,255,255,.8)}
+  .tw-line .ch{visibility:hidden}
+  .tw-line .ch.on{visibility:visible}
+  .caret{display:inline-block;width:2px;height:1.05em;margin-left:.06em;margin-right:-2px;vertical-align:-.14em;background:#fff;
+    border-radius:1px;animation:caret 1s steps(1) infinite;transition:opacity .5s}
+  .caret.gone{animation:none;opacity:0}
   @keyframes caret{50%{opacity:0}}
+  @media (max-width:640px){.tw-line br{display:none}}
+  @media (max-width:520px){.tw-line.l1{letter-spacing:.22em;padding-left:.22em}.tw-line.l2{letter-spacing:.2em;padding-left:.2em}}
+
+  /* about */
+  .about{width:min(92vw,760px);margin-top:clamp(40px,6vh,64px);animation:rise 1s 1.6s cubic-bezier(.2,.8,.2,1) both}
+  .about .kicker{margin:0 0 14px;font-size:12px;letter-spacing:.4em;padding-left:.4em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .about .headline{margin:0 auto;max-width:640px;font-weight:400;font-size:clamp(28px,4.6vw,44px);line-height:1.15;letter-spacing:-.005em;color:#fff;text-wrap:balance}
+  .about .intro{margin:16px auto 0;max-width:520px;font-size:clamp(15px,2vw,17px);line-height:1.6;letter-spacing:.02em;color:rgba(255,255,255,.85);text-wrap:balance}
+  .about .headline em,.signup .lead em{
+    font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:300;letter-spacing:0;
+    font-size:1.12em;white-space:nowrap;padding:0 .08em;
+    background:linear-gradient(90deg,rgba(255,194,206,.75),rgba(184,245,210,.75)) no-repeat 0 92%/100% .14em;
+  }
+  .steps-label{margin:8px 0 0;font-size:12px;letter-spacing:.34em;padding-left:.34em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .perks{list-style:none;margin:18px auto 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:600px;counter-reset:none}
+  .perks .step{
+    font-style:normal;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5A3DB0;
+    background:#fff;border-radius:999px;padding:5px 12px 5px 14px;margin-bottom:12px;
+    box-shadow:0 6px 16px rgba(45,15,105,.2);
+  }
+  .perks li:nth-child(1) .pe{transform:rotate(-6deg)}
+  .perks li:nth-child(3) .pe{transform:rotate(6deg)}
+  .perks li:hover .pe{transform:scale(1.12) rotate(0deg)}
+  .perks .pe{transition:transform .35s cubic-bezier(.2,1.4,.3,1)}
+  .perks li{
+    position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;
+    padding:26px 18px 24px;border-radius:24px;text-align:center;
+    background:linear-gradient(150deg,rgba(255,255,255,.22),rgba(255,255,255,.06));
+    backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+    box-shadow:0 18px 40px rgba(45,15,105,.22),inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+  }
+  .perks li::before{ /* gradient edge */
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+    background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,194,206,.45) 40%,rgba(184,245,210,.45) 70%,rgba(255,255,255,.15));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  }
+  .perks li:hover{transform:translateY(-4px);box-shadow:0 24px 50px rgba(45,15,105,.3),inset 0 1px 0 rgba(255,255,255,.45)}
+  .perks .pe{font-size:34px;line-height:1;margin-bottom:8px;filter:drop-shadow(0 6px 12px rgba(40,10,95,.3))}
+  .perks b{font-weight:400;font-size:19px;line-height:1.25;letter-spacing:.01em;color:#fff;text-wrap:balance}
+  .perks span:last-child{font-size:13px;line-height:1.45;letter-spacing:.03em;color:rgba(255,255,255,.75);text-wrap:balance}
+  .about{width:min(92vw,600px)!important}
+  @media (max-width:400px){.steps-label{letter-spacing:.2em;padding-left:.2em;font-size:11px}}
+  @media (max-width:640px){
+    .perks{grid-template-columns:1fr;gap:12px;max-width:420px}
+    .perks li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:16px;row-gap:3px;
+      align-items:center;justify-items:start;text-align:left;padding:18px 18px 18px 16px;border-radius:20px}
+    .perks .step{grid-column:2;grid-row:1;margin:0 0 4px;font-size:10px;padding:4px 10px 4px 12px}
+    .perks .pe{grid-column:1;grid-row:1/4;font-size:34px;margin:0 2px}
+    .perks b{grid-column:2;font-size:17px}
+    .perks span:last-child{grid-column:2;font-size:13px}
+  }
+
+  /* debt-free plan box */
+  .appwrap{display:flex;flex-direction:column;align-items:center}
+  .phone{
+    position:relative;width:min(64vw,250px);aspect-ratio:9/19;border-radius:44px;padding:9px;
+    background:linear-gradient(145deg,#f4efff 0%,#b9a6ee 18%,#5d47a8 50%,#8c74d6 78%,#efe8ff 100%);
+    box-shadow:0 40px 80px -20px rgba(35,10,85,.6),0 18px 36px -12px rgba(35,10,85,.4);
+    animation:iconIn .9s cubic-bezier(.2,1.2,.3,1) 1.6s both;
+  }
+  .pbtn{position:absolute;width:3px;border-radius:2px;background:#8f7ad6}
+  .b1{left:-3px;top:18%;height:4%}.b2{left:-3px;top:26%;height:9%}.b3{left:-3px;top:37%;height:9%}.b4{right:-3px;top:28%;height:13%}
+  .plan{
+    position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 20px;
+    background:radial-gradient(120% 60% at 20% 0%,#d9c9ff 0%,transparent 60%),linear-gradient(170deg,#B49AF0,#8A67DA 60%,#6A49C4);
+    box-shadow:inset 0 0 0 2px #120a24;
+  }
+  .plan::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.05) 30%,transparent 31%)}
+  .island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:34%;height:24px;border-radius:99px;background:#0b0618}
+  .status{position:absolute;top:15px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:center;
+    font:600 12px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;color:#fff}
+  .sig{display:flex;gap:2px;align-items:flex-end}.sig i{width:3px;background:#fff;border-radius:1px}
+  .sig i:nth-child(1){height:4px}.sig i:nth-child(2){height:6px}.sig i:nth-child(3){height:8px}.sig i:nth-child(4){height:10px}
+  .plan{justify-content:flex-start!important;padding:0!important}
+  .scr{position:relative;width:100%;padding:46px 12px 0;text-align:left;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Rounded","Helvetica Neue",Arial,sans-serif}
+  .ah{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}
+  .ah b{display:block;font-size:19px;font-weight:800;letter-spacing:-.4px;line-height:1.1}
+  .ah small{font-size:11px;color:rgba(255,255,255,.78)}
+  .ah img{width:30px;height:30px;border-radius:9px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+  .acard{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);border-radius:16px;padding:11px 12px;margin-bottom:9px}
+  .ak{margin:0 0 4px;font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.78)}
+  .abig{margin:0;font-size:28px;font-weight:700;letter-spacing:-.6px;line-height:1.05}
+  .asub{margin:2px 0 0;font-size:11px;color:rgba(255,255,255,.78)}
+  .acard .meter{margin-top:12px}
+  .seg{display:flex;background:rgba(0,0,0,.18);border-radius:10px;padding:2px}
+  .seg span{flex:1;text-align:center;padding:5px 0;border-radius:8px;font-size:11px;font-weight:600}
+  .seg .on{background:#fff;color:#5A3DB0}
+  .anav{position:absolute;left:10px;right:10px;bottom:20px;display:flex;padding:3px;border-radius:18px;
+    background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font:600 9px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}
+  .anav span{flex:1;text-align:center;padding:5px 0 5px;border-radius:15px;color:rgba(255,255,255,.78)}
+  .anav b{display:block;font-size:14px;margin-bottom:2px}
+  .anav .on{background:#fff;color:#5A3DB0}
+  .homebar{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:36%;height:4px;border-radius:4px;background:rgba(255,255,255,.9)}
+  .plan::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+    background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,194,206,.45) 40%,rgba(184,245,210,.45) 70%,rgba(255,255,255,.15));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+  .plan-k{margin:0 0 18px;position:relative;text-wrap:balance;font-size:11px;letter-spacing:.32em;padding-left:.32em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .plan-ico{font-size:40px;line-height:1;filter:drop-shadow(0 8px 14px rgba(40,10,95,.3));animation:bob 3.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-6px) rotate(4deg)}}
+  .plan-t{margin:12px 0 4px;font-weight:400;font-size:20px;color:#fff}
+  .plan-s{margin:0 auto;max-width:340px;position:relative;font-size:16px;line-height:1.5;color:#fff;text-wrap:balance}
+  .meter{margin-top:22px;position:relative;width:100%}
+  .phone .ends{font-size:8px;letter-spacing:.08em;margin-top:7px}
+  .phone .track{height:6px}.phone .dot{width:12px;height:12px;margin:-6px 0 0 -6px}
+  .track{position:relative;height:8px;border-radius:99px;background:rgba(255,255,255,.2)}
+  .fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:inherit;background:linear-gradient(90deg,#FFC2CE,#fff,#B8F5D2)}
+  .dot{position:absolute;top:50%;left:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25),0 0 16px rgba(255,255,255,.7)}
+  .plan.go .fill{animation:fill 3.2s cubic-bezier(.45,0,.2,1) .3s forwards}
+  .plan.go .dot{animation:slide 3.2s cubic-bezier(.45,0,.2,1) .3s forwards}
+  @keyframes fill{to{width:100%}}
+  @keyframes slide{to{left:100%}}
+  .ends{display:flex;justify-content:space-between;margin-top:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .goal{transition:color .4s,transform .4s}
+  .plan.arrived .goal{color:#fff;transform:scale(1.08)}
+  @media (prefers-reduced-motion:reduce){.fill{width:100%}.dot{left:100%}}
+
+  /* AI white box */
+  .aibox{
+    position:relative;max-width:600px;margin:0 auto;padding:32px 36px;border-radius:30px;text-align:left;display:flex;align-items:center;justify-content:center;gap:40px;color:#2a1f4a;
+    border:2px solid transparent;
+    background:linear-gradient(180deg,#fff,#fbf8ff) padding-box,
+               linear-gradient(120deg,#FFC2CE,#B094EC,#B8F5D2,#B094EC,#FFC2CE) border-box;
+    background-size:100% 100%,300% 100%;
+    box-shadow:0 30px 60px -10px rgba(45,15,105,.45),0 0 0 8px rgba(255,255,255,.12);
+    animation:iconIn .9s cubic-bezier(.2,1.2,.3,1) 1.6s both,ring 6s linear infinite;
+    overflow:hidden;
+  }
+  @keyframes ring{to{background-position:0 0,300% 0}}
+  .aibox::before{content:"";position:absolute;inset:-40% -10% auto;height:90%;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(176,148,236,.22),transparent)}
+  .aibox::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(176,148,236,.18),transparent);transform:skewX(-18deg);z-index:0;
+    animation:sweep 5s ease-in-out 3s infinite}
+  @keyframes sweep{0%{left:-60%}35%,100%{left:130%}}
+  .aitag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;padding:6px 14px;border-radius:99px;
+    font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+    background:linear-gradient(90deg,#8B68DA,#B094EC);box-shadow:0 6px 16px rgba(90,61,176,.35)}
+  .spark{display:inline-block;animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .aih{position:relative;z-index:1;margin:0;font-size:clamp(24px,3.4vw,30px);line-height:1.2;letter-spacing:-.01em;color:#2a1f4a;text-wrap:balance}
+  .aih em{font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:400;font-size:1.12em;padding-right:.06em;
+    background:linear-gradient(90deg,#8B68DA,#E07BA0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .ais{position:relative;z-index:1;margin:12px auto 0;max-width:320px;font-size:15px;line-height:1.5;color:#6b6290;text-wrap:balance}
+
+  .aitext{position:relative;z-index:1;flex:1}
+  .aitext .ais{margin-left:0}
+  /* mini iPhone inside the AI box */
+  .mp{position:relative;z-index:1;flex:0 0 auto;width:168px;aspect-ratio:9/19;padding:5px;border-radius:26px;
+    background:linear-gradient(145deg,#f4efff 0%,#b9a6ee 18%,#5d47a8 50%,#8c74d6 78%,#efe8ff 100%);
+    box-shadow:0 22px 40px -12px rgba(35,10,85,.55),0 8px 16px -8px rgba(35,10,85,.4);transform:rotate(-4deg)}
+  .mp-scr{position:relative;width:100%;height:100%;border-radius:21px;overflow:hidden;color:#fff;text-align:left;padding:32px 12px 0;
+    background:radial-gradient(120% 60% at 20% 0%,#d9c9ff 0%,transparent 60%),linear-gradient(170deg,#B49AF0,#8A67DA 60%,#6A49C4);
+    box-shadow:inset 0 0 0 1.5px #120a24;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Rounded","Helvetica Neue",Arial,sans-serif}
+  .mp-isl{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:36%;height:12px;border-radius:99px;background:#0b0618}
+  .mp-top{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+  .mp-top img{width:18px;height:18px;border-radius:5px}
+  .mp-top span{font-size:10px;font-weight:800;letter-spacing:-.2px}
+  .mp-k{margin:0;font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .mp-big{white-space:nowrap;margin:3px 0 12px;font-size:26px;font-weight:800;letter-spacing:-.6px;line-height:1}
+  .mp-bar{height:5px;border-radius:9px;background:rgba(255,255,255,.22);overflow:hidden}
+  .mp-bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#FFC2CE,#fff,#B8F5D2);animation:mpfill 2.8s cubic-bezier(.45,0,.2,1) 2.6s forwards}
+  @keyframes mpfill{to{width:72%}}
+  .mp-sub{margin:7px 0 0;font-size:8px;color:rgba(255,255,255,.85)}
+  .mp-home{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:36%;height:3px;border-radius:3px;background:rgba(255,255,255,.9)}
+  @media (max-width:560px){
+    .aibox{padding:22px 18px 22px 16px;gap:16px}
+    .mp{width:118px;padding:4px;border-radius:20px}
+    .mp-scr{border-radius:16px;padding:24px 8px 0}
+    .mp-isl{top:5px;height:9px}
+    .mp-top{margin-bottom:10px;gap:4px}.mp-top img{width:13px;height:13px;border-radius:4px}.mp-top span{font-size:7.5px}
+    .mp-k{font-size:6.5px}.mp-big{font-size:17px;margin-bottom:8px}.mp-sub{font-size:7px}
+    .mp-chart{margin-top:8px;padding:5px 6px 4px;border-radius:8px}.mp-ck{font-size:5px;margin-bottom:3px;letter-spacing:.5px}.mp-chart svg{height:30px}.mp-ax{font-size:5.5px;margin-top:3px}
+    .aih{font-size:21px!important}.ais{font-size:13px!important;margin-top:8px!important}.aitag{margin-bottom:10px!important}
+    .aitag{font-size:9px;padding:5px 10px;margin-bottom:10px;letter-spacing:.12em}
+    .aih{font-size:21px}
+    .ais{font-size:13px;margin-top:8px}
+  }
+
+  .mp-chart{margin-top:14px;padding:9px 9px 7px;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25)}
+  .mp-ck{white-space:nowrap;margin:0 0 6px;font-size:7.5px;font-weight:600;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .mp-chart svg{display:block;width:100%;height:84px;overflow:visible}
+  .mp-line{stroke-dasharray:140;stroke-dashoffset:140;animation:draw 2.4s ease-out 2.6s forwards}
+  .mp-area{opacity:0;animation:fadein 1s ease 4s forwards}
+  @keyframes fadein{to{opacity:1}}
+  .mp-ax{display:flex;justify-content:space-between;margin-top:5px;font-size:7px;color:rgba(255,255,255,.75)}
+  .aih{font-size:clamp(26px,3.6vw,34px)!important;line-height:1.15!important}
+  .ais{font-size:16px!important;margin-top:14px!important;max-width:300px!important}
+  .aitag{margin-bottom:18px!important}
+
+  /* join the club */
+  .club-ico{width:.72em;height:1.2em;vertical-align:-.22em;margin-left:.2em;filter:drop-shadow(0 4px 8px rgba(40,10,95,.35));transform:rotate(-8deg)}
+  .club{margin:0;font-weight:400;font-size:clamp(22px,3.4vw,30px);letter-spacing:.01em;color:#fff}
+  .club-sub{margin:6px 0 22px;font-size:13px;letter-spacing:.28em;padding-left:.28em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  @media (max-width:400px){.club-sub{letter-spacing:.14em;padding-left:.14em;font-size:12px}}
 
   /* early access */
-  .signup{width:min(92vw,460px);display:flex;flex-direction:column;align-items:center;margin-top:clamp(72px,12vw,110px);animation:rise 1s 2s cubic-bezier(.2,.8,.2,1) both}
-  .signup .lead{margin:0 0 18px;text-wrap:balance;white-space:nowrap;font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.88)}
+  .signup{width:min(92vw,460px);display:flex;flex-direction:column;align-items:center;margin-top:clamp(48px,7vh,72px);animation:rise 1s 2s cubic-bezier(.2,.8,.2,1) both}
+  .signup .lead{margin:0 0 18px;text-wrap:balance;white-space:nowrap;font-size:17px;letter-spacing:.03em;color:#fff}
   .fields{display:flex;flex-direction:column}
   .fields .row{display:grid;grid-template-columns:auto 1fr;align-items:end;column-gap:20px;row-gap:4px;text-align:left}
   .f{display:contents;cursor:text}
   .lbl{display:flex;align-items:center;gap:10px;white-space:nowrap;padding:0 0 11px;
     font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.9)}
   .emo{font-size:18px;line-height:1;width:1.3em;text-align:center}
-  @media (max-width:380px){.lbl{font-size:14px;gap:7px}.fields .row{column-gap:12px}}
+  @media (max-width:480px){
+    .lbl{font-size:14px;gap:7px;letter-spacing:.02em}.emo{font-size:16px}
+    .fields .row{column-gap:12px}
+    .fields input,.tel select{font-size:16px}
+    .tel{gap:4px}.tel select{padding-right:14px;background-position:right 0 center}
+  }
+  @media (max-width:400px){.fields .row{grid-template-columns:1fr;row-gap:0}.lbl{padding:16px 0 0}.fields input,.tel select{padding-top:8px}}
   .fields input{
     width:100%;min-width:0;padding:14px 4px 10px;outline:0;color:#fff;
     background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.45);border-radius:0;
@@ -88,7 +295,19 @@
   .fields input:focus{border-bottom-color:#fff}
   .fields input::placeholder{color:rgba(255,255,255,.7);transition:opacity .2s}
   .fields input:focus::placeholder{opacity:.45}
-  .fields input.bad{border-bottom-color:#FFC2CE}
+  .fields input.bad,.tel.bad{border-bottom-color:#FFC2CE}
+  /* phone: dialling code + number share one underline */
+  .tel{display:flex;align-items:flex-end;gap:8px;min-width:0;border-bottom:1px solid rgba(255,255,255,.45);transition:border-color .25s}
+  .tel:focus-within{border-bottom-color:#fff}
+  .tel input{border-bottom:0!important}
+  .tel select{
+    flex:0 0 auto;appearance:none;-webkit-appearance:none;cursor:pointer;
+    background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 2px center;
+    border:0;outline:0;color:#fff;font:17px "Questrial",sans-serif;letter-spacing:.02em;
+    padding:14px 18px 10px 2px;
+  }
+  .tel select option{color:#2a1f4a;background:#fff}
+  .tel select:focus-visible{outline:1px dashed rgba(255,255,255,.6);outline-offset:2px}
   /* stop the browser's autofill highlight */
   .fields input:-webkit-autofill,.fields input:-webkit-autofill:hover,.fields input:-webkit-autofill:focus,.fields input:-webkit-autofill:active,.fields input:autofill{
     -webkit-text-fill-color:#fff;caret-color:#fff;
@@ -106,8 +325,10 @@
   .note{min-height:22px;margin:12px 0 0;font-size:14px;color:rgba(255,255,255,.85)}
   .note.err{color:#FFE0E6}
   /* confirmation */
-  body.joined .soon,body.joined .line{opacity:0;max-height:0;margin:0;overflow:hidden;transition:opacity .5s,max-height .7s,margin .7s}
-  .soon,.line{max-height:80px}
+  body.joined .soon,body.joined .line,body.joined .about{opacity:0;max-height:0;margin:0;overflow:hidden;transition:opacity .5s,max-height .7s,margin .7s}
+  .soon,.line{max-height:260px}
+  .about{max-height:900px}
+  body.joined .about{animation:none}
   body.joined .signup{margin-top:clamp(52px,8vw,84px);transition:margin .7s cubic-bezier(.2,.8,.2,1)}
   .done{
     position:relative;width:100%;padding:clamp(28px,5vw,40px) clamp(22px,5vw,40px) clamp(26px,4.5vw,34px);
@@ -164,10 +385,44 @@
   <main>
     <h1 class="logo"><img src="logo.png" alt="Budget Rehab" width="1728" height="190"></h1>
     <div class="line"></div>
-    <p class="soon" aria-label="App coming soon"><span class="tw" aria-hidden="true"><span class="sizer">App coming soon...<i class="caret"></i></span><span><span id="typed"></span><i class="caret"></i></span></span></p>
+    <h2 class="soon" aria-label="Heal your relationship with money. Your new budgeting app is coming soon">
+      <span class="tw-line l1" aria-hidden="true" data-text="Heal your relationship with money. |Your new budgeting app is coming soon..."></span>
+    </h2>
+
+    <section class="about" aria-label="About Budget Rehab">
+      <div class="appwrap">
+        <div class="aibox">
+          <div class="mp" aria-hidden="true">
+            <div class="mp-scr">
+              <div class="mp-isl"></div>
+              <div class="mp-top"><img src="data:image/png;base64,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" alt=""><span>Budget Rehab</span></div>
+              <p class="mp-k">Debt free by</p>
+              <p class="mp-big">Jan 2028</p>
+              <div class="mp-bar"><i></i></div>
+              <p class="mp-sub">On track 🎉</p>
+              <div class="mp-chart">
+                <p class="mp-ck">Debt remaining</p>
+                <svg viewBox="0 0 100 52" preserveAspectRatio="none">
+                  <defs><linearGradient id="mpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+                  <path class="mp-area" d="M0,6 C18,9 30,16 45,24 C60,32 75,42 100,50 L100,52 L0,52 Z" fill="url(#mpg)"/>
+                  <path class="mp-line" d="M0,6 C18,9 30,16 45,24 C60,32 75,42 100,50" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                  <circle cx="100" cy="50" r="2.6" fill="#B8F5D2"/>
+                </svg>
+                <div class="mp-ax"><span>Now</span><span>Jan 28</span></div>
+              </div>
+              <div class="mp-home"></div>
+            </div>
+          </div>
+          <div class="aitext"><span class="aitag"><span class="spark">✦</span> Powered by AI</span><p class="aih">A budget plan built just for <em>you</em></p><p class="ais">Personalised from your own data. Your fastest route to debt free.</p></div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </section>
 
     <div class="signup" id="signup">
-      <p class="lead">Heal your relationship with money.</p>
+      <h3 class="club">Join the club <svg class="club-ico" viewBox="0 0 24 40" aria-hidden="true"><rect x="1" y="1" width="22" height="38" rx="5" fill="#fff"/><rect x="3" y="3" width="18" height="34" rx="3.5" fill="#9A7BE3"/><rect x="8.5" y="4.6" width="7" height="2.2" rx="1.1" fill="#fff"/><path d="M6.5 27 C9.5 26 11 22 13.5 21.5 S16.5 17 18 15" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><rect x="9" y="33.6" width="6" height="1" rx=".5" fill="#fff"/></svg></h3>
+      <p class="club-sub">Get early access to the new app</p>
       <form id="form" novalidate>
         <p class="hp"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
         <div class="fields"><div class="row">
@@ -175,8 +430,36 @@
               <input type="text" name="name" id="name" autocomplete="name" required maxlength="100"></label>
             <label class="f"><span class="lbl"><span class="emo" aria-hidden="true">✉️</span>Email Address</span>
               <input type="email" name="email" id="email" autocomplete="email" required></label>
-            <label class="f"><span class="lbl"><span class="emo" aria-hidden="true">📱</span>Phone Number</span>
-              <input type="tel" name="phone" id="phone" autocomplete="tel" required maxlength="30"></label>
+            <div class="f"><label class="lbl" for="phone"><span class="emo" aria-hidden="true">📱</span>Phone Number</label>
+              <div class="tel" id="telwrap">
+                <select id="cc" aria-label="Country dialling code">
+                <option value="+44" aria-label="United Kingdom +44" selected>🇬🇧 +44</option>
+                <option value="+353" aria-label="Ireland +353">🇮🇪 +353</option>
+                <option value="+1" aria-label="United States / Canada +1">🇺🇸 +1</option>
+                <option value="+33" aria-label="France +33">🇫🇷 +33</option>
+                <option value="+49" aria-label="Germany +49">🇩🇪 +49</option>
+                <option value="+34" aria-label="Spain +34">🇪🇸 +34</option>
+                <option value="+39" aria-label="Italy +39">🇮🇹 +39</option>
+                <option value="+31" aria-label="Netherlands +31">🇳🇱 +31</option>
+                <option value="+351" aria-label="Portugal +351">🇵🇹 +351</option>
+                <option value="+48" aria-label="Poland +48">🇵🇱 +48</option>
+                <option value="+40" aria-label="Romania +40">🇷🇴 +40</option>
+                <option value="+234" aria-label="Nigeria +234">🇳🇬 +234</option>
+                <option value="+233" aria-label="Ghana +233">🇬🇭 +233</option>
+                <option value="+260" aria-label="Zambia +260">🇿🇲 +260</option>
+                <option value="+263" aria-label="Zimbabwe +263">🇿🇼 +263</option>
+                <option value="+265" aria-label="Malawi +265">🇲🇼 +265</option>
+                <option value="+27" aria-label="South Africa +27">🇿🇦 +27</option>
+                <option value="+254" aria-label="Kenya +254">🇰🇪 +254</option>
+                <option value="+1" aria-label="Jamaica +1">🇯🇲 +1</option>
+                <option value="+91" aria-label="India +91">🇮🇳 +91</option>
+                <option value="+92" aria-label="Pakistan +92">🇵🇰 +92</option>
+                <option value="+880" aria-label="Bangladesh +880">🇧🇩 +880</option>
+                <option value="+971" aria-label="United Arab Emirates +971">🇦🇪 +971</option>
+                <option value="+61" aria-label="Australia +61">🇦🇺 +61</option>
+                </select>
+                <input type="tel" name="phone" id="phone" autocomplete="tel-national" required maxlength="20" inputmode="tel">
+              </div></div>
           </div>
           <button type="button" id="btn">Get early access</button>
         </div>
@@ -211,8 +494,8 @@
     }
 
     const nameEl=document.getElementById('name'),phoneEl=document.getElementById('phone');
-    function bad(el,text){el.classList.add('bad');msg(text,true);el.focus();}
-    [nameEl,email,phoneEl].forEach(el=>el.addEventListener('input',()=>{el.classList.remove('bad');msg('');}));
+    function bad(el,text){(el.id==='phone'?document.getElementById('telwrap'):el).classList.add('bad');msg(text,true);el.focus();}
+    [nameEl,email,phoneEl].forEach(el=>el.addEventListener('input',()=>{el.classList.remove('bad');document.getElementById('telwrap').classList.remove('bad');msg('');}));
 
     async function submit(e){
       if(e)e.preventDefault();
@@ -220,12 +503,13 @@
       const n=nameEl.value.trim(),v=email.value.trim(),ph=phoneEl.value.trim();
       if(!n)return bad(nameEl,'Please enter your name.');
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))return bad(email,'Please enter a valid email address.');
-      if((ph.match(/\d/g)||[]).length<7||/[^\d\s()+\-.]/.test(ph))return bad(phoneEl,'Please enter a valid phone number.');
+      if((ph.match(/\d/g)||[]).length<6||/[^\d\s()\-.]/.test(ph))return bad(phoneEl,'Please enter a valid phone number.');
+      const fullPhone=document.getElementById('cc').value+' '+ph.replace(/^0+/,'');
       if(form.querySelector('[name=website]').value)return;
       if(preview){confirmed('<small class="pv">Preview only: nothing sent.</small>');return;}
       btn.disabled=true;btn.textContent='Joining\u2026';msg('');
       try{
-        const res=await fetch(SIGNUP_URL,{method:'POST',body:new URLSearchParams({name:n,email:v,phone:ph})});
+        const res=await fetch(SIGNUP_URL,{method:'POST',body:new URLSearchParams({name:n,email:v,phone:fullPhone})});
         const data=await res.json();
         if(!data.ok)throw new Error(data.error||'failed');
         confirmed();
@@ -239,21 +523,37 @@
     form.addEventListener('submit',submit);
   })();
 
-  // typewriter "App coming soon..."
+  // typewriter: reveals each line letter by letter (layout is fixed, so nothing shifts)
   (function(){
-    const el=document.getElementById('typed'),text='App coming soon...';
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=text;el.closest('.tw').classList.add('finished');return;}
+    const lines=[...document.querySelectorAll('.tw-line')];
+    const chars=[];
+    lines.forEach(line=>{
+      for(const c of line.dataset.text){if(c==='|'){line.appendChild(document.createElement('br'));continue;}const s=document.createElement('span');s.className='ch';s.textContent=c;line.appendChild(s);chars.push(s);}
+    });
+    const caret=document.createElement('i');caret.className='caret';
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){chars.forEach(c=>c.classList.add('on'));return;}
+    lines[0].prepend(caret);
     let i=0;
     function type(){
-      el.textContent=text.slice(0,++i);
-      if(i<text.length){
-        const ch=text[i-1];
-        setTimeout(type, text[i]==='.'?380 : ch===' '?220 : 110+Math.random()*70);
+      const c=chars[i];c.classList.add('on');c.after(caret);i++;
+      if(i<chars.length){
+        const next=chars[i],newLine=next.previousSibling&&next.previousSibling.nodeName==='BR';
+        if(newLine)next.before(caret);
+        setTimeout(type, newLine?450 : next.textContent==='.'?300 : c.textContent===' '?110 : 45+Math.random()*35);
       }else{
-        setTimeout(()=>el.closest('.tw').classList.add('finished'),900);
+        setTimeout(()=>caret.classList.add('gone'),1100);
       }
     }
-    setTimeout(type,1300);
+    setTimeout(type,1100);
+  })();
+
+  // debt-free meter: plays when the box scrolls into view
+  (function(){
+    const box=document.getElementById('plan');if(!box)return;
+    const start=()=>{box.classList.add('go');setTimeout(()=>box.classList.add('arrived'),3600);};
+    if(!('IntersectionObserver' in window))return start();
+    const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){setTimeout(start,1800);io.disconnect();}},{threshold:.5});
+    io.observe(box);
   })();
 
   // gentle parallax on the glows
