@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#B094EC">
 <style>
+  .card h3{color:var(--purple);font-size:1.05rem;margin:22px 0 6px}
   :root{--b1:#B094EC;--b2:#8B68DA;--purple:#5A3DB0;--purple-dark:#3d2580;--lavender:#ece4ff;--lavender-soft:#f7f3ff;--ink:#2a2233;--muted:#6b6176;--line:#e4dbf5}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -55,10 +56,10 @@
   .btn{display:inline-block;background:var(--purple);color:#fff;text-decoration:none;padding:13px 28px;border-radius:999px;font-weight:600;margin-top:6px}
   .btn:hover{background:var(--purple-dark)}
   .small{color:var(--muted);font-size:14px;margin-top:12px}
-  .topics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 34px}
+  .topics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 34px}
   .topics a{display:block;padding:18px 18px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink);background:#fff;transition:border-color .2s,transform .2s}
   .topics a:hover{border-color:var(--b2);transform:translateY(-2px)}
-  .topics strong{display:block;color:var(--purple-dark);font-size:15.5px}
+  .topics strong{display:block;color:var(--purple-dark);font-size:15.5px;line-height:1.35;margin-bottom:4px}
   .topics span{display:block;color:var(--muted);font-size:13.5px;margin-top:2px;line-height:1.4}
   details{border-bottom:1px solid var(--line);padding:14px 0}
   details:last-child{border-bottom:none}
@@ -74,24 +75,24 @@
   .flinks a:hover{text-decoration:underline}
   .fco{margin:0 auto;max-width:560px;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,.75)}
   @media (max-width:860px){.legal-layout{grid-template-columns:1fr;gap:24px}.toc-side{position:static;background:var(--lavender-soft);border-radius:14px;padding:18px 20px}.topics{grid-template-columns:1fr 1fr}}
-  @media (max-width:560px){.bar{justify-content:center}.bar nav{justify-content:center;gap:14px}.topics{grid-template-columns:1fr}.card{padding:22px 20px}.wrap{padding-top:32px}}
+  @media (max-width:560px){.bar{justify-content:center}.bar nav{justify-content:center;gap:14px}.topics{grid-template-columns:1fr 1fr}.card{padding:22px 20px}.wrap{padding-top:32px}}
 </style>
 </head>
 <body>
 <header class="site">
-  <div class="bar"><a class="brand" href="./"><img src="logo.png" alt="Budget Rehab" width="1728" height="190"></a><nav><a href="privacy.html">Privacy Policy</a><a href="support.html" aria-current="page">Support</a><a href="delete-account.html">Delete My Data</a><a href="mailto:admin@budgetrehab.co.uk">Contact Us</a></nav></div>
+  <div class="bar"><a class="brand" href="./"><img src="logo.png" alt="Budget Rehab" width="1728" height="190"></a><nav><a href="privacy.html">Privacy Policy</a><a href="support.html" aria-current="page">Support</a><a href="support.html#delete">Delete My Data</a></nav></div>
   <div class="hero"><p class="eyebrow">Help centre</p><h1>How can we help?</h1><p class="lead">We're here if you get stuck.</p></div>
 </header>
 
 <main class="wrap narrow">
-  <section class="card contact">
+  <section class="card contact" id="contact">
     <h2>CONTACT SUPPORT</h2>
     <p>Email us and a real person will get back to you, usually within 2 working days.</p>
     <a class="btn" href="mailto:admin@budgetrehab.co.uk?subject=Budget%20Rehab%20support">admin@budgetrehab.co.uk</a>
     <p class="small">Please include your phone model (iPhone or Android), its software version and the app version (Settings → About). <strong>Please don't email bank statements or credit reports.</strong> We never need them to help you.</p>
   </section>
 
-  <nav class="topics" aria-label="Help topics"><a href="#start"><strong>Getting started</strong><span>Set up pay, debts and documents</span></a><a href="#statements"><strong>Statements &amp; credit reports</strong><span>Uploading and fixing problems</span></a><a href="#spending"><strong>Spending &amp; budgets</strong><span>Categories, plans and your debt-free date</span></a><a href="#data"><strong>Your data &amp; privacy</strong><span>AI permission, erasing data, complaints</span></a><a href="#billing"><strong>Account &amp; billing</strong><span>Subscriptions, refunds, new phone</span></a><a href="#debt"><strong>Help with debt</strong><span>Free UK debt advice services</span></a></nav>
+  <nav class="topics" aria-label="Help topics"><a href="#start"><strong>Getting started</strong><span>Set up pay, debts and documents</span></a><a href="#statements"><strong>Statements &amp; credit reports</strong><span>Uploading and fixing problems</span></a><a href="#spending"><strong>Spending &amp; budgets</strong><span>Categories, plans and your debt-free date</span></a><a href="#data"><strong>Your data &amp; privacy</strong><span>AI permission, erasing data, complaints</span></a><a href="#delete"><strong>Delete your data</strong><span>Delete your account and data</span></a><a href="#billing"><strong>Account &amp; billing</strong><span>Subscriptions, refunds, new phone</span></a><a href="#debt"><strong>Help with debt</strong><span>Free UK debt advice services</span></a><a href="#contact"><strong>Contact support</strong><span>Email a real person</span></a></nav>
 
   <section class="card" id="start">
     <h2>Getting started</h2>
@@ -171,7 +172,7 @@
     </details>
     <details>
       <summary>How do I erase my data or delete my account?</summary>
-      <p>Go to <strong>Settings → Erase my data</strong> in the app, on iPhone or Android. This permanently deletes your statements, credit report, debts, income and plans, and it can't be undone. If you've uninstalled the app, you can <a href="delete-account.html">request deletion online</a>.</p>
+      <p>Go to <strong>Settings → Erase my data</strong> in the app, on iPhone or Android. This permanently deletes your statements, credit report, debts, income and plans, and it can't be undone. If you've uninstalled the app, you can <a href="#delete">request deletion online</a>.</p>
     </details>
     <details>
       <summary>How do I make a data protection complaint?</summary>
@@ -200,6 +201,46 @@
     </details>
   </section>
 
+  <section class="card" id="delete">
+    <h2>Delete your account &amp; data</h2>
+    <p>For the Budget Rehab app by Budget Rehab Limited, on the App Store and Google Play. You can delete your data at any time, for free.</p>
+
+    <h3>Option 1: Delete in the app</h3>
+    <ol>
+      <li>Open Budget Rehab on your iPhone or Android phone.</li>
+      <li>Go to <strong>Settings</strong>.</li>
+      <li>Tap <strong>Erase my data</strong> (or <strong>Delete account</strong>).</li>
+      <li>Confirm. Your data is deleted straight away.</li>
+    </ol>
+  
+    <h3>Option 2: Request deletion without the app</h3>
+    <p>If you've uninstalled the app or can't open it, send us a deletion request:</p>
+    <ol>
+      <li>Email <strong>admin@budgetrehab.co.uk</strong> with the subject <strong>"Delete my data"</strong>.</li>
+      <li>Send it from the email address linked to your Budget Rehab account, or tell us that address.</li>
+      <li>We'll confirm your identity and delete your account and data within <strong>30 days</strong>, usually much sooner. We'll email you when it's done.</li>
+    </ol>
+    <a class="btn" href="mailto:admin@budgetrehab.co.uk?subject=Delete%20my%20data&body=Please%20delete%20my%20Budget%20Rehab%20account%20and%20all%20associated%20data.%0D%0A%0D%0AEmail%20address%20on%20my%20account%3A%20">Email a deletion request</a>
+    <p class="small">Uninstalling the app does not by itself delete data stored on our servers.</p>
+  
+    <h3>What gets deleted</h3>
+    <table>
+      <tr><th>Data</th><th>What happens</th></tr>
+      <tr><td>Bank statements and transactions</td><td>Permanently deleted</td></tr>
+      <tr><td>Credit report details and debts</td><td>Permanently deleted</td></tr>
+      <tr><td>Income, payslips and budget plans</td><td>Permanently deleted</td></tr>
+      <tr><td>Your account and email address</td><td>Permanently deleted</td></tr>
+      <tr><td>Backup copies</td><td>Cleared within 30 days</td></tr>
+    </table>
+    <h3>What we keep, and for how long</h3>
+    <ul>
+      <li><strong>A record of your deletion request</strong> (date and email address only): kept for 2 years, to show we complied.</li>
+      <li><strong>Support emails and complaint records</strong>: kept for up to 2 years, then deleted.</li>
+      <li><strong>Payment records</strong>: payments are handled by Apple or Google, which keep their own records. We don't hold your card details.</li>
+    </ul>
+    <p class="small">Deletion can't be undone. You can delete only your financial data and keep your account by using "Erase my data" in the app. See our <a href="privacy.html#delete">Privacy Policy</a> for more.</p>
+    </section>
+
   <section class="card" id="debt">
     <h2>Need help with debt?</h2>
     <p>Budget Rehab is a budgeting tool, not regulated financial or debt advice. If you're worried about debt, these UK services offer free, confidential help:</p>
@@ -214,7 +255,7 @@
 </main>
 
 <footer class="site-foot">
-  <nav class="flinks"><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a><a href="delete-account.html">Delete My Data</a><a href="mailto:admin@budgetrehab.co.uk">Contact Us</a></nav>
+  <nav class="flinks"><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a><a href="support.html#delete">Delete My Data</a></nav>
   <p class="fco">© 2026 Budget Rehab Limited. All rights reserved.<br>Budget Rehab Limited (Company Registration Number 17557911). Registered in England and Wales. Registered office: 66 Paul Street, London, EC2A 4NA, United Kingdom.</p>
 </footer>
 </body>
