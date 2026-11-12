@@ -76,6 +76,15 @@
   .fco{margin:0 auto;max-width:560px;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,.75)}
   @media (max-width:860px){.legal-layout{grid-template-columns:1fr;gap:24px}.toc-side{position:static;background:var(--lavender-soft);border-radius:14px;padding:18px 20px}.topics{grid-template-columns:1fr 1fr}}
   @media (max-width:560px){.bar nav{gap:8px 18px}.topics{grid-template-columns:1fr}.card{padding:22px 20px}.wrap{padding-top:32px}}
+  article{max-width:none}
+  .contents{margin:22px 0 8px}
+  .contents h2{margin:0 0 12px}
+  .contents ol{list-style:none;margin:0;padding:0;columns:2;column-gap:32px}
+  .contents li{margin:0;break-inside:avoid}
+  .contents a{display:block;padding:5px 0;color:var(--muted);text-decoration:none;font-size:15px;line-height:1.4}
+  .contents a:hover{color:var(--purple)}
+  .summary{border-radius:18px;padding:28px 30px}
+  @media (max-width:560px){.contents ol{columns:1}}
 </style>
 </head>
 <body>
@@ -84,8 +93,23 @@
   <div class="hero"><p class="eyebrow">Legal</p><h1>Privacy Policy</h1><p class="lead">How Budget Rehab collects, uses and protects your information.</p></div>
 </header>
 
-<main class="wrap legal-layout">
-  <aside class="toc-side"><p>On this page</p><ol>
+<main class="wrap narrow">
+  <article>
+  <p class="meta">Effective date: 11 November 2026 · Last updated: 11 November 2026 · Applies to the Budget Rehab app on iPhone (Apple App Store) and Android (Google Play), and to budgetrehab.co.uk</p>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li>We use your bank statements, credit report, pay and debt details <strong>only to build your budget and debt-free plan</strong>.</li>
+      <li>We <strong>never sell</strong> your data, never use it for advertising, and never track you across other apps or websites.</li>
+      <li>We <strong>never ask for your online banking login</strong>, and we can't move your money.</li>
+      <li>If your documents are read by a third-party AI service, we <strong>ask your permission in the app first</strong>.</li>
+      <li>You can <strong>erase all your data</strong> from inside the app or at <a href="support.html#delete">budgetrehab.co.uk/support.html#delete</a>.</li>
+      <li>Questions or complaints: <a href="mailto:admin@budgetrehab.co.uk">admin@budgetrehab.co.uk</a>. We acknowledge complaints within 30 days.</li>
+    </ul>
+  </div>
+
+  <nav class="contents card" aria-label="Contents"><h2>Contents</h2><ol>
     <li><a href="#who">1. Who we are</a></li>
     <li><a href="#collect">2. Information we collect</a></li>
     <li><a href="#use">3. How we use it</a></li>
@@ -106,23 +130,7 @@
     <li><a href="#complaints">18. Complaints</a></li>
     <li><a href="#changes">19. Changes</a></li>
     <li><a href="#contact">20. Contact us</a></li>
-  </ol></aside>
-  <article>
-  <p class="meta">Effective date: 11 November 2026 · Last updated: 11 November 2026 · Applies to the Budget Rehab app on iPhone (Apple App Store) and Android (Google Play), and to budgetrehab.co.uk</p>
-
-  <div class="summary">
-    <h2>The short version</h2>
-    <ul>
-      <li>We use your bank statements, credit report, pay and debt details <strong>only to build your budget and debt-free plan</strong>.</li>
-      <li>We <strong>never sell</strong> your data, never use it for advertising, and never track you across other apps or websites.</li>
-      <li>We <strong>never ask for your online banking login</strong>, and we can't move your money.</li>
-      <li>If your documents are read by a third-party AI service, we <strong>ask your permission in the app first</strong>.</li>
-      <li>You can <strong>erase all your data</strong> from inside the app or at <a href="support.html#delete">budgetrehab.co.uk/support.html#delete</a>.</li>
-      <li>Questions or complaints: <a href="mailto:admin@budgetrehab.co.uk">admin@budgetrehab.co.uk</a>. We acknowledge complaints within 30 days.</li>
-    </ul>
-  </div>
-
-  
+  </ol></nav>
 
   <h2 id="who">1. Who we are</h2>
   <p>Budget Rehab is a budgeting app that helps people in the UK understand their spending, manage debt and work out how long it will take to become debt free.</p>
@@ -288,7 +296,7 @@
 </main>
 
 <footer class="site-foot">
-  <nav class="flinks"><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a><a href="support.html#delete">Delete My Data</a></nav>
+  <nav class="flinks"><a href="privacy.html">Privacy Policy</a><a href="support.html">Support</a></nav>
   <p class="fco">© 2026 Budget Rehab Limited. All rights reserved.<br>Budget Rehab Limited (Company Registration Number 17557911). Registered in England and Wales. Registered office: 66 Paul Street, London, EC2A 4NA, United Kingdom.</p>
 </footer>
 </body>
